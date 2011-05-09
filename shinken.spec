@@ -2,7 +2,7 @@
 %define minor 1
 
 Name:       shinken
-Version:    %{major}.%{minor}
+Version:    0.6
 Release:    %mkrel 1
 Summary:    TNagios(R) compatible monitoring tool
 License:    AGPL
@@ -67,12 +67,20 @@ rm -rf %{buildroot}
 %{py_puresitedir}/shinken
 %{py_puresitedir}/skonf
 %{py_puresitedir}/Shinken-%{major}-py%{pyver}.egg-info
-%{_bindir}/shinken-reactionner
-%{_bindir}/shinken-poller
-%{_bindir}/shinken-broker
 %{_bindir}/shinken-arbiter
+%{_bindir}/shinken-arbiter.py
+%{_bindir}/shinken-broker
+%{_bindir}/shinken-broker.py
+%{_bindir}/shinken-poller
+%{_bindir}/shinken-poller.py
+%{_bindir}/shinken-discovery
+%{_bindir}/shinken-reactionner
+%{_bindir}/shinken-reactionner.py
+%{_bindir}/shinken-receiver
+%{_bindir}/shinken-receiver.py
 %{_bindir}/shinken-scheduler
-%{_libdir}/nagios/plugins/check.sh
+%{_bindir}/shinken-scheduler.py
+%{_libdir}/shinken/plugins/check.sh
 %attr(-,shinken,shinken) %{_localstatedir}/lib/shinken
 %attr(-,shinken,shinken) %{_localstatedir}/log/shinken
 %attr(-,shinken,shinken) %{_localstatedir}/run/shinken
