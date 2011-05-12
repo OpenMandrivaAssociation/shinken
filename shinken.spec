@@ -44,10 +44,14 @@ rm -f %{buildroot}%{_sysconfdir}/default/shinken
 
 install -d -m 755 %{buildroot}%{_initrddir}
 install -m 755 %{SOURCE1} %{buildroot}%{_initrddir}/shinken
-#install -d -m 755 %{buildroot}%{_sysconfdir}/sysconfig
 
 install -d -m 755 %{buildroot}%{_localstatedir}/log/shinken
 install -d -m 755 %{buildroot}%{_localstatedir}/run/shinken
+
+# move to an arch-neutral location
+install -d -m 755 %{buildroot}%{_datadir}/shinken/plugins
+mv %{buildroot}/usr/lib/shinken/plugins/check.sh \
+    %{buildroot}%{_datadir}/shinken/plugins
 
 %clean
 rm -rf %{buildroot}
@@ -80,8 +84,7 @@ rm -rf %{buildroot}
 %{_bindir}/shinken-receiver.py
 %{_bindir}/shinken-scheduler
 %{_bindir}/shinken-scheduler.py
-%{_libdir}/shinken/plugins/check.sh
+%{_datadir}/shinken/plugins/check.sh
 %attr(-,shinken,shinken) %{_localstatedir}/lib/shinken
 %attr(-,shinken,shinken) %{_localstatedir}/log/shinken
 %attr(-,shinken,shinken) %{_localstatedir}/run/shinken
-
