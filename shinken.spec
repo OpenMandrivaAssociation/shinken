@@ -3,7 +3,7 @@
 
 Name:       shinken
 Version:    0.6
-Release:    %mkrel 1
+Release:    2
 Summary:    TNagios(R) compatible monitoring tool
 License:    AGPL
 Group:      Networking/Other
@@ -12,13 +12,12 @@ Source0:    http://shinken-monitoring.org/pub/shinken-%{version}.tar.gz
 Source1:    shinken.init
 BuildRequires:  python-setuptools
 BuildArch:  noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}
 
 %description
 Shinken is a new, Nagios compatible monitoring tool, written in Python. The
 main goal of Shinken is to allow users to have a fully flexible architecture
 for their monitoring system that can easily scale to large environments. It’s
-as simple as in all the marketing “cloud computing” slides, but here, it’s
+as simple as in all the marketing cloud computing slides, but here, it’s
 real!
 
 Shinken is backwards-compatible with the Nagios configuration standard and
@@ -36,7 +35,6 @@ perl -pi \
 python setup.py build
 
 %install
-rm -rf %{buildroot}
 python setup.py install --root=%{buildroot}
 
 rm -f %{buildroot}%{_sysconfdir}/init.d/*
@@ -53,9 +51,6 @@ install -d -m 755 %{buildroot}%{_datadir}/shinken/plugins
 mv %{buildroot}/usr/lib/shinken/plugins/check.sh \
     %{buildroot}%{_datadir}/shinken/plugins
 
-%clean
-rm -rf %{buildroot}
-
 %pre
 %_pre_useradd shinken %{_localstatedir}/lib/shinken /bin/sh
 
@@ -63,14 +58,12 @@ rm -rf %{buildroot}
 %_postun_userdel shinken
 
 %files
-%defattr(-,root,root)
 %doc README COPYING Changelog FROM_NAGIOS_TO_SHINKEN THANKS db doc
 %config(noreplace) %{_sysconfdir}/shinken
-#config(noreplace) %{_sysconfdir}/sysconfig/shinken
 %{_initrddir}/shinken
 %{py_puresitedir}/shinken
 %{py_puresitedir}/skonf
-%{py_puresitedir}/Shinken-%{major}-py%{pyver}.egg-info
+%{py_puresitedir}/Shinken-%{major}-py%{py_ver}.egg-info
 %{_bindir}/shinken-arbiter
 %{_bindir}/shinken-arbiter.py
 %{_bindir}/shinken-broker
@@ -88,3 +81,4 @@ rm -rf %{buildroot}
 %attr(-,shinken,shinken) %{_localstatedir}/lib/shinken
 %attr(-,shinken,shinken) %{_localstatedir}/log/shinken
 %attr(-,shinken,shinken) %{_localstatedir}/run/shinken
+
