@@ -3,7 +3,7 @@
 
 Name:       shinken
 Version:    0.6
-Release:    2
+Release:    3
 Summary:    TNagios(R) compatible monitoring tool
 License:    AGPL
 Group:      Networking/Other
