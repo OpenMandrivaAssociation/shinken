@@ -7,7 +7,7 @@ Release:    3
 Summary:    TNagios(R) compatible monitoring tool
 License:    AGPL
 Group:      Networking/Other
-URL:        http://shinken-monitoring.org
+URL:        https://shinken-monitoring.org
 Source0:    http://shinken-monitoring.org/pub/shinken-%{version}.tar.gz
 Source1:    shinken.init
 BuildRequires:  python-setuptools
